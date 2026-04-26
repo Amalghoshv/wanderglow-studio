@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Star, Users, Award, Compass, Plane, Hotel, Car, UserCheck, Train } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ContactMapSection } from "@/components/contact-map-section";
 import heroImg from "@/assets/hero-kerala.jpg";
 import tajImg from "@/assets/dest-taj.jpg";
 import himalayaImg from "@/assets/dest-himalayas.jpg";
@@ -247,28 +248,7 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-hero p-10 sm:p-16 text-white text-center shadow-glow">
-            <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
-            <div className="relative max-w-3xl mx-auto">
-              <h2 className="font-display text-4xl sm:text-5xl mb-4">Your next adventure awaits.</h2>
-              <p className="text-white/85 text-lg mb-8">
-                Tell us where you dream of going. We'll craft the journey of a lifetime.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button asChild variant="accent" size="xl">
-                  <Link to="/contact">Start Planning <ArrowRight /></Link>
-                </Button>
-                <Button asChild variant="glass" size="xl">
-                  <a href="tel:+919207411510">Call +91 92074 11510</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactMapSection />
     </>
   );
 }
