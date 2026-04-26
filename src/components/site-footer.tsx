@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Phone, Globe, Facebook, Instagram, Twitter } from "lucide-react";
+import { MapPin, Phone, Globe, Facebook, Instagram, Mail } from "lucide-react";
 import logo from "@/assets/packlogue-logo.png";
 
 export function SiteFooter() {
@@ -8,20 +8,26 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="space-y-4">
           <div className="bg-white inline-block rounded-xl p-3">
-            <img src={logo} alt="Packlogue Holidays" className="h-12 w-auto" width={180} height={48} />
+            <img src={logo} alt="Packlogue Holidays Logo" className="h-12 w-auto" width={216} height={48} />
           </div>
           <p className="text-white/70 text-sm leading-relaxed">
             Crafting unforgettable journeys across the world. Your trusted partner for seamless travel experiences.
           </p>
           <div className="flex gap-3 pt-2">
-            {[Facebook, Instagram, Twitter].map((Icon, i) => (
+            {[
+              { icon: Facebook, href: "https://www.facebook.com/share/1MzpQ2Jy5Q/?mibextid=wwXIfr" },
+              { icon: Instagram, href: "https://www.instagram.com/packlogue_holidays?igsh=bm16eTJkbnR3bmJk&utm_source=qr" },
+              { icon: Mail, href: "mailto:packlogue@gmail.com" },
+            ].map((s, i) => (
               <a
                 key={i}
-                href="#"
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-smooth"
                 aria-label="social"
               >
-                <Icon size={18} />
+                <s.icon size={18} />
               </a>
             ))}
           </div>

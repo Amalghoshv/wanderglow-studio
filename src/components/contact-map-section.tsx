@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, Phone, Send, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Send, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -34,7 +34,7 @@ export function ContactMapSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
+    <section id="contact" className="relative py-20 sm:py-24 overflow-hidden reveal">
       {/* Map background — OpenStreetMap tile of Mannarkkad */}
       <div className="absolute inset-0">
         <iframe
@@ -57,7 +57,7 @@ export function ContactMapSection() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
         {/* Left intro */}
         <div className="text-white max-w-xl">
           <p className="text-accent-glow font-semibold tracking-widest text-xs uppercase mb-3">Get in touch</p>
@@ -65,7 +65,7 @@ export function ContactMapSection() {
             Find us in Mannarkkad — <span className="italic text-accent-glow">reach us anywhere</span>.
           </h2>
           <p className="text-white/85 text-lg mb-8">
-            Drop your details below and we'll continue the conversation on WhatsApp — no waiting, no forms in your inbox.
+            Ready to start your next adventure? Send us an inquiry and our travel experts will reach out to craft your perfect itinerary.
           </p>
 
           <ul className="space-y-4 text-sm">
@@ -92,51 +92,62 @@ export function ContactMapSection() {
         </div>
 
         {/* Form card */}
-        <div className="bg-card/95 backdrop-blur-xl border border-white/30 rounded-3xl p-8 sm:p-10 shadow-glow">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[#25D366] text-white flex items-center justify-center shadow-soft">
-              <MessageCircle size={22} />
-            </div>
-            <div>
-              <h3 className="font-display text-2xl text-foreground leading-tight">Chat on WhatsApp</h3>
-              <p className="text-xs text-muted-foreground">Submit and we'll continue on WhatsApp instantly.</p>
-            </div>
+        <div className="bg-card/95 backdrop-blur-xl border border-white/30 rounded-3xl p-8 sm:p-10 shadow-glow relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-brand" />
+          
+          <div className="mb-8">
+            <h3 className="font-display text-3xl text-foreground leading-tight mb-2">Request a Custom Quote</h3>
+            <p className="text-muted-foreground">Share your travel dreams and we'll make them a reality.</p>
           </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="cm-name">Name</Label>
-                <Input id="cm-name" name="name" required placeholder="Your name" className="mt-2 h-12" />
+ 
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <Label htmlFor="cm-name" className="text-sm font-medium ml-1">Name</Label>
+                <Input id="cm-name" name="name" required placeholder="User Name" className="h-12 bg-background/50 border-border focus:ring-accent" />
               </div>
-              <div>
-                <Label htmlFor="cm-phone">Phone</Label>
-                <Input id="cm-phone" name="phone" required placeholder="+91 ..." className="mt-2 h-12" />
+              <div className="space-y-2">
+                <Label htmlFor="cm-phone" className="text-sm font-medium ml-1">Phone</Label>
+                <Input id="cm-phone" name="phone" required placeholder="+91 ..." className="h-12 bg-background/50 border-border focus:ring-accent" />
               </div>
             </div>
-            <div>
-              <Label htmlFor="cm-email">Email <span className="text-muted-foreground font-normal">(optional)</span></Label>
-              <Input id="cm-email" name="email" type="email" placeholder="you@example.com" className="mt-2 h-12" />
-            </div>
-            <div>
-              <Label htmlFor="cm-dest">Destination</Label>
-              <Input id="cm-dest" name="destination" placeholder="Where would you like to go?" className="mt-2 h-12" />
-            </div>
-            <div>
-              <Label htmlFor="cm-msg">Message</Label>
-              <Textarea id="cm-msg" name="message" rows={4} placeholder="Travel dates, group size, style of trip..." className="mt-2" />
+            
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <Label htmlFor="cm-email" className="text-sm font-medium ml-1">Email <span className="text-muted-foreground font-normal">(optional)</span></Label>
+                <Input id="cm-email" name="email" type="email" placeholder="user@example.com" className="h-12 bg-background/50 border-border focus:ring-accent" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="cm-dest" className="text-sm font-medium ml-1">Preferred Destination</Label>
+                <Input id="cm-dest" name="destination" placeholder="e.g. Bali, Maldives" className="h-12 bg-background/50 border-border focus:ring-accent" />
+              </div>
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="cm-msg" className="text-sm font-medium ml-1">Your Message</Label>
+              <Textarea id="cm-msg" name="message" rows={4} placeholder="Tell us about your group size, dates, and what you love most about travel..." className="bg-background/50 border-border focus:ring-accent resize-none" />
+            </div>
+ 
             <Button
               type="submit"
               size="xl"
               disabled={loading}
-              className="w-full bg-[#25D366] hover:bg-[#1ebe5b] text-white shadow-glow transition-smooth font-semibold"
+              className="w-full bg-gradient-brand text-white shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-bold text-lg h-14"
             >
-              {loading ? "Opening WhatsApp…" : (<>Send via WhatsApp <Send size={18} /></>)}
+              {loading ? (
+                <div className="flex items-center gap-3">
+                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Sending...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  Plan My Journey <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              )}
             </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              By submitting, you'll be redirected to WhatsApp with your message pre-filled.
+            
+            <p className="text-[11px] text-muted-foreground text-center uppercase tracking-widest opacity-60">
+              Personalized itineraries • No hidden fees • 24/7 Concierge
             </p>
           </form>
         </div>

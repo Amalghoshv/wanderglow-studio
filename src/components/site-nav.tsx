@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import logo from "@/assets/packlogue-logo.png";
+import { Menu, X, Phone } from "lucide-react";
+import logo from "@/assets/logo png-04.png";
+import logo2 from "@/assets/packlogue-logo.png";
+import logoMark from "@/assets/packlogue-mark.png";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,67 +29,140 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-smooth",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-soft"
-          : "bg-transparent",
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-soft py-2"
+          : "bg-transparent py-4",
       )}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-20">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Packlogue Holidays" className="h-10 w-auto" width={160} height={40} />
+        <Link to="/" className="flex items-center gap-1 group transition-smooth">
+          {/* Desktop Logo */}
+          <img 
+            src={scrolled ? logo2 : logo} 
+            alt="Packlogue Holidays Logo" 
+            className="h-40 w-auto group-hover:scale-105 transition-smooth hidden lg:block" 
+            width={620} 
+            height={160} 
+          />
+          {/* Mobile Logo Mark */}
+          <img 
+            src={logoMark} 
+            alt="Packlogue Holidays Mark" 
+            className="h-16 w-auto group-hover:scale-105 transition-smooth lg:hidden" 
+            width={80} 
+            height={80} 
+          />
         </Link>
-        <nav className="hidden lg:flex items-center gap-8">
+        
+        <nav className="hidden lg:flex items-center gap-10">
           {links.map((l) => (
             <Link
-              key={l.to}
+              key={l.label}
               to={l.to}
               className={cn(
-                "text-sm font-medium transition-smooth hover:text-accent",
-                scrolled ? "text-foreground" : "text-white",
+                "text-sm font-semibold tracking-wide transition-all duration-300 relative group",
+                scrolled ? "text-foreground" : "text-white drop-shadow-md",
               )}
               activeProps={{ className: "text-accent" }}
-              activeOptions={{ exact: l.to === "/" }}
+              activeOptions={{ exact: true }}
             >
               {l.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
-        <div className="hidden lg:block">
-          <Button asChild variant="hero" size="lg">
+
+        <div className="hidden lg:flex items-center gap-6">
+          <a 
+            href="tel:+919207411510" 
+            className={cn(
+              "group flex items-center gap-0 hover:gap-3 font-semibold transition-all duration-500 overflow-hidden max-w-[40px] hover:max-w-[250px] whitespace-nowrap",
+              scrolled ? "text-foreground" : "text-white"
+            )}
+          >
+            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
+              <Phone size={18} fill="currentColor" />
+            </div>
+            <span className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+              +91 92074 11510
+            </span>
+          </a>
+          <Button asChild variant="hero" size="lg" className="shadow-glow hover:scale-105 transition-smooth">
             <Link to="/contact">Plan Your Trip</Link>
           </Button>
         </div>
-        <button
-          className={cn(
-            "lg:hidden p-2 rounded-md",
-            scrolled ? "text-foreground" : "text-white",
-          )}
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-      {open && (
-        <div className="lg:hidden bg-background border-t border-border px-6 py-6 space-y-4 shadow-card">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="block text-base font-medium text-foreground hover:text-accent"
-              activeProps={{ className: "text-accent" }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Button asChild variant="hero" size="lg" className="w-full">
-            <Link to="/contact" onClick={() => setOpen(false)}>Plan Your Trip</Link>
-          </Button>
+
+        <div className="flex lg:hidden items-center gap-3">
+          <a
+            href="tel:+919207411510"
+            className={cn(
+              "p-2.5 rounded-xl transition-all duration-300",
+              scrolled ? "text-accent bg-accent/10" : "text-white bg-white/10 backdrop-blur-md",
+            )}
+            aria-label="Call us"
+          >
+            <Phone size={24} fill="currentColor" />
+          </a>
+          <button
+            className={cn(
+              "p-2.5 rounded-xl transition-all duration-300",
+              scrolled ? "text-foreground bg-secondary/50" : "text-white bg-white/10 backdrop-blur-md",
+            )}
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* MOBILE NAV OVERLAY */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-40 lg:hidden bg-background/98 backdrop-blur-xl transition-all duration-500 ease-in-out",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none translate-x-full"
+        )}
+      >
+        <div className="flex flex-col h-full pt-32 px-8 pb-12">
+          <nav className="flex flex-col space-y-6 flex-1">
+            {links.map((l, i) => (
+              <Link
+                key={l.label}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "text-4xl font-display font-semibold text-foreground hover:text-accent transition-all duration-300 transform",
+                  open ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+                )}
+                style={{ transitionDelay: `${i * 100}ms` }}
+                activeProps={{ className: "text-accent" }}
+                activeOptions={{ exact: true }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          
+          <div className={cn(
+            "pt-8 border-t border-border transition-all duration-500 delay-500",
+            open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
+            <div className="flex flex-col gap-4">
+              <a 
+                href="tel:+919207411510" 
+                className="flex items-center justify-center gap-3 w-full h-16 rounded-2xl bg-secondary text-foreground font-semibold"
+              >
+                <Phone size={20} className="text-accent" fill="currentColor" />
+                Call: +91 92074 11510
+              </a>
+              <Button asChild variant="hero" size="xl" className="w-full h-16 text-lg shadow-glow">
+                <Link to="/contact" onClick={() => setOpen(false)}>Start Your Journey</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
