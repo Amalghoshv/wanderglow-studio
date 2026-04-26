@@ -26,16 +26,28 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-soft py-2"
-          : "bg-transparent py-4",
+        open
+          ? "bg-background py-1 sm:py-2"
+          : scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-soft py-1 sm:py-2"
+          : "bg-transparent py-2 sm:py-4",
       )}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-14 sm:h-20">
         <Link to="/" className="flex items-center gap-1 group transition-smooth">
           {/* Desktop Logo */}
           <img 
@@ -49,7 +61,7 @@ export function SiteNav() {
           <img 
             src={logoMark} 
             alt="Packlogue Holidays Mark" 
-            className="h-16 w-auto group-hover:scale-105 transition-smooth lg:hidden" 
+            className="h-10 w-auto group-hover:scale-105 transition-smooth lg:hidden" 
             width={80} 
             height={80} 
           />
@@ -98,21 +110,29 @@ export function SiteNav() {
             href="tel:+919207411510"
             className={cn(
               "p-2.5 rounded-xl transition-all duration-300",
-              scrolled ? "text-accent bg-accent/10" : "text-white bg-white/10 backdrop-blur-md",
+              open
+                ? "text-accent bg-accent/10"
+                : scrolled
+                ? "text-accent bg-accent/10"
+                : "text-white bg-white/10 backdrop-blur-md",
             )}
             aria-label="Call us"
           >
-            <Phone size={24} fill="currentColor" />
+            <Phone size={20} fill="currentColor" />
           </a>
           <button
             className={cn(
               "p-2.5 rounded-xl transition-all duration-300",
-              scrolled ? "text-foreground bg-secondary/50" : "text-white bg-white/10 backdrop-blur-md",
+              open
+                ? "text-foreground bg-secondary"
+                : scrolled
+                ? "text-foreground bg-secondary/50"
+                : "text-white bg-white/10 backdrop-blur-md",
             )}
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
           >
-            {open ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+            <Menu size={24} strokeWidth={2.5} />
           </button>
         </div>
       </div>
@@ -120,11 +140,21 @@ export function SiteNav() {
       {/* MOBILE NAV OVERLAY */}
       <div 
         className={cn(
-          "fixed inset-0 z-40 lg:hidden bg-background/98 backdrop-blur-xl transition-all duration-500 ease-in-out",
+          "fixed inset-0 z-40 lg:hidden bg-background transition-all duration-500 ease-in-out",
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none translate-x-full"
         )}
       >
-        <div className="flex flex-col h-full pt-32 px-8 pb-12">
+        {/* Close button inside the overlay — always visible */}
+        <div className="absolute top-4 right-4 z-50">
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="flex items-center justify-center w-11 h-11 rounded-xl bg-foreground/10 text-foreground border border-foreground/20 hover:bg-foreground/15 transition-all duration-200"
+          >
+            <X size={22} strokeWidth={2.5} />
+          </button>
+        </div>
+        <div className="flex flex-col h-full pt-24 px-8 pb-12">
           <nav className="flex flex-col space-y-6 flex-1">
             {links.map((l, i) => (
               <Link
