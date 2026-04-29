@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { SEO } from "@/components/seo";
 
 function NotFoundComponent() {
   return (
@@ -33,6 +34,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
+      <SEO />
       <SiteNav />
       <main className="min-h-screen">
         <Outlet />
