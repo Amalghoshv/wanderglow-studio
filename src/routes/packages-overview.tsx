@@ -87,6 +87,19 @@ const packageData = [
 function PackagesPage() {
   const [activeTab, setActiveTab] = useState(packageData[0].id);
 
+  const handleTabClick = (pkgId: string) => {
+    setActiveTab(pkgId);
+    if (window.innerWidth < 1024) {
+      setTimeout(() => {
+        const element = document.getElementById('package-content');
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   const activeData = packageData.find(d => d.id === activeTab) || packageData[0];
 
   return (
@@ -113,7 +126,7 @@ function PackagesPage() {
               {packageData.map((pkg) => (
                 <button
                   key={pkg.id}
-                  onClick={() => setActiveTab(pkg.id)}
+                  onClick={() => handleTabClick(pkg.id)}
                   className={`flex items-center justify-between p-4 rounded-2xl text-left transition-all duration-300 ${
                     activeTab === pkg.id 
                       ? "bg-gradient-brand text-white shadow-glow translate-x-2" 
@@ -131,22 +144,24 @@ function PackagesPage() {
           </div>
 
           {/* Content Area with smooth animation via key change */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8" id="package-content">
             <div 
               key={activeTab} 
               className="bg-card border border-border rounded-3xl p-6 sm:p-10 shadow-soft animate-in fade-in slide-in-from-bottom-4 duration-500 ease-out fill-mode-both"
             >
               
-              <div className="w-full h-48 sm:h-64 rounded-2xl overflow-hidden mb-8 relative shadow-inner">
-                <img src={activeData.image} alt={activeData.title} className="w-full h-full object-cover animate-in zoom-in-105 duration-1000 ease-out fill-mode-both" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-background/20 to-transparent opacity-90" />
-                <div className="absolute bottom-6 left-6 right-6 flex items-center gap-4">
-                  <div className="w-14 h-14 shrink-0 rounded-2xl bg-background/20 backdrop-blur-md text-white flex items-center justify-center border border-white/20 shadow-glow">
-                    <activeData.icon size={28} />
+              <div className="w-full min-h-[14rem] sm:h-64 rounded-2xl overflow-hidden mb-8 relative shadow-inner flex flex-col justify-center p-5 sm:p-8">
+                <div className="absolute inset-0 -z-10">
+                  <img src={activeData.image} alt={activeData.title} className="w-full h-full object-cover animate-in zoom-in-105 duration-1000 ease-out fill-mode-both" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-background/60 to-transparent opacity-95" />
+                </div>
+                <div className="flex flex-row items-center gap-3 sm:gap-6 relative z-10">
+                  <div className="w-10 h-10 sm:w-16 sm:h-16 shrink-0 rounded-xl sm:rounded-2xl bg-background/50 backdrop-blur-xl text-foreground flex items-center justify-center border border-border/50 shadow-glow">
+                    <activeData.icon className="w-5 h-5 sm:w-8 sm:h-8" />
                   </div>
                   <div>
-                    <h2 className="font-display text-3xl sm:text-4xl text-foreground drop-shadow-md">{activeData.title}</h2>
-                    <p className="text-muted-foreground mt-1 font-medium">Found {activeData.routes.length} incredible itineraries</p>
+                    <h2 className="font-display text-xl sm:text-4xl text-foreground drop-shadow-sm text-balance leading-tight mb-0.5">{activeData.title}</h2>
+                    <p className="text-muted-foreground text-xs sm:text-base font-medium">Found {activeData.routes.length} incredible itineraries</p>
                   </div>
                 </div>
               </div>
