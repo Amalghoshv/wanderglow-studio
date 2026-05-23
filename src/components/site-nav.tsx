@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo png-04.png";
@@ -10,12 +10,16 @@ import { cn } from "@/lib/utils";
 const links = [
   { to: "/", label: "Home" },
   { to: "/destinations", label: "Destinations" },
+  { to: "/packages", label: "Packages" },
   { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteNav() {
+  const { pathname } = useLocation();
+  const hasHeroImage = pathname !== "/packages-overview";
+  
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,6 +40,9 @@ export function SiteNav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Text should be white ONLY when on a page with a hero image, NOT scrolled, and NOT open.
+  const useWhiteText = hasHeroImage && !scrolled && !open;
+
   return (
     <header
       className={cn(
@@ -51,7 +58,7 @@ export function SiteNav() {
         <Link to="/" className="flex items-center gap-1 group transition-smooth">
           {/* Desktop Logo */}
           <img 
-            src={scrolled ? logo2 : logo} 
+            src={useWhiteText ? logo : logo2} 
             alt="Packlogue Holidays Logo" 
             className="h-40 w-auto group-hover:scale-105 transition-smooth hidden lg:block" 
             width={620} 
@@ -74,7 +81,7 @@ export function SiteNav() {
               to={l.to}
               className={cn(
                 "text-sm font-semibold tracking-wide transition-all duration-300 relative group",
-                scrolled ? "text-foreground" : "text-white drop-shadow-md",
+                !useWhiteText ? "text-foreground" : "text-white drop-shadow-md",
               )}
               activeProps={{ className: "text-accent" }}
               activeOptions={{ exact: true }}
@@ -90,7 +97,7 @@ export function SiteNav() {
             href="tel:+919207411510" 
             className={cn(
               "group flex items-center gap-0 hover:gap-3 font-semibold transition-all duration-500 overflow-hidden max-w-[40px] hover:max-w-[250px] whitespace-nowrap",
-              scrolled ? "text-foreground" : "text-white"
+              !useWhiteText ? "text-foreground" : "text-white"
             )}
           >
             <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
@@ -114,7 +121,9 @@ export function SiteNav() {
                 ? "text-accent bg-accent/10"
                 : scrolled
                 ? "text-accent bg-accent/10"
-                : "text-white bg-white/10 backdrop-blur-md",
+                : useWhiteText
+                ? "text-white bg-white/10 backdrop-blur-md"
+                : "text-foreground bg-foreground/5 backdrop-blur-md",
             )}
             aria-label="Call us"
           >
@@ -127,7 +136,9 @@ export function SiteNav() {
                 ? "text-foreground bg-secondary"
                 : scrolled
                 ? "text-foreground bg-secondary/50"
-                : "text-white bg-white/10 backdrop-blur-md",
+                : useWhiteText
+                ? "text-white bg-white/10 backdrop-blur-md"
+                : "text-foreground bg-foreground/5 backdrop-blur-md",
             )}
             onClick={() => setOpen(true)}
             aria-label="Open menu"

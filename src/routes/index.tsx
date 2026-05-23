@@ -3,6 +3,11 @@ import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Star, Users, Award, Compass, Plane, Hotel, Car, UserCheck, Train } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactMapSection } from "@/components/contact-map-section";
+import { InternationalTrips } from "@/components/international-trips";
+import { CoreServices } from "@/components/core-services";
+import { CompanyOverview } from "@/components/company-overview";
+import { WhyChooseUs } from "@/components/why-choose-us";
+import { TourPackages } from "@/components/tour-packages";
 import heroImg from "@/assets/hero-kerala.jpg";
 import tajImg from "@/assets/dest-taj.jpg";
 import himalayaImg from "@/assets/dest-himalayas.jpg";
@@ -145,42 +150,13 @@ export function Index() {
         </div>
       </section>
 
-      {/* SERVICES STRIP */}
-      <section id="services" className="py-20 sm:py-24 bg-background relative reveal">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-accent font-semibold tracking-widest text-xs uppercase mb-3">What we do</p>
-            <h2 className="font-display text-4xl sm:text-5xl text-foreground mb-4">
-              The Most Comprehensive <span className="text-gradient-brand">Travel Services</span> in Kerala
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              From your first inspiration to the final souvenir — we handle every detail.
-            </p>
-          </div>
+      <CompanyOverview />
+      <WhyChooseUs />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => (
-              <div
-                key={s.title}
-                className="group relative p-8 rounded-2xl bg-card border border-border hover:border-accent/40 shadow-soft hover:shadow-card transition-smooth overflow-hidden"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-20 blur-2xl transition-smooth" />
-                <div className="relative">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-brand flex items-center justify-center text-white shadow-soft mb-5">
-                    <s.icon size={26} />
-                  </div>
-                  <h3 className="font-display text-2xl text-foreground mb-2">{s.title}</h3>
-                  <p className="text-muted-foreground">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CoreServices />
 
       {/* DESTINATIONS */}
-      <section id="destinations" className="py-20 sm:py-24 bg-gradient-soft relative overflow-hidden reveal">
+      <section id="destinations" className="py-12 sm:py-24 bg-gradient-soft relative overflow-hidden reveal">
         <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
@@ -238,52 +214,8 @@ export function Index() {
         </div>
       </section>
 
-      {/* WHY US */}
-      <section id="about" className="py-20 sm:py-24 bg-background reveal">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <img src={goaImg} alt="Happy travellers enjoying a beach vacation in Goa" loading="lazy" className="rounded-3xl shadow-card w-full aspect-[4/5] object-cover" width={1024} height={1280} />
-            <div className="absolute -bottom-8 -right-4 sm:right-8 bg-card p-6 rounded-2xl shadow-card border border-border w-64">
-              <div className="flex items-center gap-1 text-accent mb-2">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-              </div>
-              <p className="text-sm text-foreground font-medium leading-snug">
-                "Best Kerala trip we've ever had — every detail was handled."
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">— Anita & Raj, Bangalore</p>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-accent font-semibold tracking-widest text-xs uppercase mb-3">Why Packlogue</p>
-            <h2 className="font-display text-4xl sm:text-5xl text-foreground mb-6">
-              Kerala's Most <span className="text-gradient-brand">Trusted</span> Travel Partner.
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              As a leading travel agency in Mannarkkad, Palakkad, we bring a personal touch to every trip. Our team handcrafts itineraries that showcase the best of Kerala and the world, ensuring you get the best tour packages at unbeatable prices.
-            </p>
-
-            <div className="grid grid-cols-2 gap-5">
-              {[
-                { icon: Award, title: "Handcrafted Itineraries", desc: "Designed by real travellers." },
-                { icon: Users, title: "24/7 Support", desc: "We're here whenever you need us." },
-                { icon: MapPin, title: "Local Expertise", desc: "Insider access to hidden gems." },
-                { icon: Star, title: "Best Price Promise", desc: "Premium experiences, fair prices." },
-              ].map((f) => (
-                <div key={f.title} className="flex gap-3">
-                  <div className="w-11 h-11 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
-                    <f.icon size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground text-sm mb-1">{f.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <TourPackages />
+      <InternationalTrips />
 
       <ContactMapSection />
     </>
