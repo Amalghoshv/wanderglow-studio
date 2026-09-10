@@ -1,70 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Packlogue Holidays — Best Tour Package Agency in Kerala & Palakkad</title>
-    <meta name="description" content="Packlogue Holidays is the leading tour package agency in Kerala and Palakkad. We offer handcrafted domestic & international tours, luxury vehicle hire, hotel bookings, and expert tour guides. Discover travel that feels personal." />
-    <meta name="keywords" content="Packlogue Holidays, Packlogue, best tour package agency in kerala, best travel agency in palakkad, tour packages from kerala, travel agency mannarkkad, kerala tourism packages, honeymoon packages kerala, international tour packages from kerala, vehicle hire palakkad, hotel booking kerala" />
+
+    <!-- Per-route title/description/canonical/og tags are injected at build
+         time by scripts/prerender.tsx from each route's head(). The values
+         below are the homepage defaults and a fallback for unknown routes. -->
+    <!--seo-start-->
+    <title>Packlogue Holidays — Tour Packages & Travel Agency in Palakkad, Kerala</title>
+    <meta
+      name="description"
+      content="Handcrafted Kerala, Indian and international tour packages, luxury vehicle hire and hotel booking from Packlogue Holidays, Mannarkkad, Palakkad."
+    />
     <meta name="author" content="Packlogue Holidays" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta property="og:title" content="Packlogue Holidays — Premium Tour Packages & Travel Services in Kerala" />
-    <meta property="og:description" content="Expertly curated tours, luxury transport, and handpicked stays. Based in Mannarkkad, serving travelers across Kerala and beyond." />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <link rel="canonical" href="https://packlogue.com/" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://packlogue.com" />
     <meta property="og:site_name" content="Packlogue Holidays" />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://packlogue.com/" />
+    <meta
+      property="og:title"
+      content="Packlogue Holidays — Tour Packages & Travel Agency in Palakkad, Kerala"
+    />
+    <meta
+      property="og:description"
+      content="Handcrafted Kerala, Indian and international tour packages, luxury vehicle hire and hotel booking from Packlogue Holidays, Mannarkkad, Palakkad."
+    />
+    <meta property="og:image" content="https://packlogue.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Packlogue Holidays — Tour Packages & Travel Agency in Palakkad, Kerala"
+    />
+    <meta
+      name="twitter:description"
+      content="Handcrafted Kerala, Indian and international tour packages, luxury vehicle hire and hotel booking from Packlogue Holidays, Mannarkkad, Palakkad."
+    />
+    <meta name="twitter:image" content="https://packlogue.com/og-image.jpg" />
+    <!--seo-end-->
+
     <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://packlogue.com" />
-    <link rel="icon" type="image/png" href="/packlogue-mark.png">
-    <link rel="apple-touch-icon" href="/packlogue-mark.png">
-    
+    <link rel="icon" type="image/png" href="/packlogue-mark.png" />
+    <link rel="apple-touch-icon" href="/packlogue-mark.png" />
+
+    <!-- Fonts: preconnect + non-blocking stylesheet instead of CSS @import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TravelAgency",
-      "name": "Packlogue Holidays",
-      "image": "https://packlogue.com/packlogue-mark.png",
-      "@id": "https://packlogue.com",
-      "url": "https://packlogue.com",
-      "telephone": "+919037243004",
-      "priceRange": "₹₹",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mannarkkad",
-        "addressLocality": "Palakkad",
-        "addressRegion": "Kerala",
-        "postalCode": "678582",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 10.9881,
-        "longitude": 76.4526
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "@id": "https://packlogue.com/#organization",
+        "name": "Packlogue Holidays",
+        "url": "https://packlogue.com/",
+        "logo": "https://packlogue.com/packlogue-mark.png",
+        "image": "https://packlogue.com/og-image.jpg",
+        "telephone": "+919037243004",
+        "priceRange": "₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mannarkkad",
+          "addressLocality": "Mannarkkad",
+          "addressRegion": "Kerala",
+          "postalCode": "678582",
+          "addressCountry": "IN"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 10.9881, "longitude": 76.4526 },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Palakkad" },
+          { "@type": "AdministrativeArea", "name": "Kerala" },
+          { "@type": "Country", "name": "India" }
         ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "sameAs": [
-        "https://www.facebook.com/packlogue",
-        "https://www.instagram.com/packlogue"
-      ]
-    }
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "sameAs": ["https://www.facebook.com/packlogue", "https://www.instagram.com/packlogue"]
+      }
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
