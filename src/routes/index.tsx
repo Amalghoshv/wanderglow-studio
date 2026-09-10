@@ -1,33 +1,43 @@
 import { useEffect } from "react";
 import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Star, Users, Award, Compass, Plane, Hotel, Car, UserCheck, Train } from "lucide-react";
+import {
+  ArrowRight,
+  MapPin,
+  Star,
+  Users,
+  Award,
+  Compass,
+  Plane,
+  Hotel,
+  Car,
+  UserCheck,
+  Train,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { pageHead } from "@/lib/seo";
 import { ContactMapSection } from "@/components/contact-map-section";
 import { InternationalTrips } from "@/components/international-trips";
 import { CoreServices } from "@/components/core-services";
 import { CompanyOverview } from "@/components/company-overview";
 import { WhyChooseUs } from "@/components/why-choose-us";
 import { TourPackages } from "@/components/tour-packages";
-import heroImg from "@/assets/hero-kerala.jpg";
-import tajImg from "@/assets/dest-taj.jpg";
-import himalayaImg from "@/assets/dest-himalayas.jpg";
-import maldivesImg from "@/assets/dest-maldives.jpg";
-import dubaiImg from "@/assets/dest-dubai.jpg";
-import goaImg from "@/assets/dest-goa.jpg";
-import santoriniImg from "@/assets/dest-santorini.jpg";
+import heroImg from "@/assets/hero-kerala.webp";
+import tajImg from "@/assets/dest-taj.webp";
+import himalayaImg from "@/assets/dest-himalayas.webp";
+import maldivesImg from "@/assets/dest-maldives.webp";
+import dubaiImg from "@/assets/dest-dubai.webp";
+import goaImg from "@/assets/dest-goa.webp";
+import santoriniImg from "@/assets/dest-santorini.webp";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  head: () => ({
-    meta: [
-      { title: "Packlogue Holidays — Handcrafted Tour Packages from Kerala" },
-      { name: "description", content: "Explore the best tour packages, vehicle hire, and hotel bookings with Packlogue Holidays. Your premier travel partner in Mannarkkad, Kerala for domestic and international trips." },
-      { property: "og:title", content: "Packlogue Holidays — Handcrafted Tour Packages" },
-      { property: "og:description", content: "Discover curated travel experiences with our expert team. From Kerala to the Maldives, we handle every detail of your journey." },
-      { property: "og:image", content: heroImg },
-      { name: "twitter:image", content: heroImg },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Packlogue Holidays — Tour Packages & Travel Agency in Palakkad, Kerala",
+      description:
+        "Handcrafted Kerala, Indian and international tour packages, luxury vehicle hire and hotel booking from Packlogue Holidays, Mannarkkad, Palakkad.",
+      path: "/",
+    }),
 });
 
 const destinations = [
@@ -60,7 +70,7 @@ export function Index() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
 
     const revealElements = document.querySelectorAll(".reveal");
@@ -71,7 +81,7 @@ export function Index() {
 
   useEffect(() => {
     const targetId = pathname.slice(1);
-    
+
     if (targetId) {
       const scrollTimer = setTimeout(() => {
         const element = document.getElementById(targetId);
@@ -95,6 +105,8 @@ export function Index() {
           className="absolute inset-0 w-full h-full object-cover"
           width={1920}
           height={1280}
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/60 to-accent/40" />
         <div className="absolute inset-0 bg-gradient-mesh opacity-60" />
@@ -106,10 +118,12 @@ export function Index() {
               Trusted by 5,000+ happy travellers
             </div>
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-6 text-balance">
-            <span className="italic text-accent-glow">Unveil the world's</span> hidden gems.
+              <span className="italic text-accent-glow">Unveil the world's</span> hidden gems.
             </h1>
             <p className="text-base sm:text-xl text-white/85 max-w-2xl mb-8 sm:mb-10 leading-relaxed mx-auto lg:mx-0">
-              Packlogue Holidays curates immersive journeys — from the misty Kerala backwaters to global wonders. Experience the best tour packages from the most trusted travel agency in Palakkad.
+              Packlogue Holidays curates immersive journeys — from the misty Kerala backwaters to
+              global wonders. Experience the best tour packages from the most trusted travel agency
+              in Palakkad.
             </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
@@ -121,7 +135,7 @@ export function Index() {
                 <Link to="/contact">Request a Custom Tour</Link>
               </Button>
             </div>
- 
+
             <div className="mt-12 sm:mt-14 grid grid-cols-3 gap-4 sm:gap-6 max-w-xl mx-auto lg:mx-0">
               {[
                 { v: "5K+", l: "Happy Travellers" },
@@ -130,7 +144,9 @@ export function Index() {
               ].map((s) => (
                 <div key={s.l}>
                   <div className="font-display text-2xl sm:text-4xl text-accent-glow">{s.v}</div>
-                  <div className="text-[10px] sm:text-sm text-white/70 mt-1 uppercase tracking-wider">{s.l}</div>
+                  <div className="text-[10px] sm:text-sm text-white/70 mt-1 uppercase tracking-wider">
+                    {s.l}
+                  </div>
                 </div>
               ))}
             </div>
@@ -140,10 +156,38 @@ export function Index() {
             <div className="relative animate-float-slow">
               <div className="absolute -inset-4 bg-gradient-brand rounded-3xl blur-2xl opacity-40" />
               <div className="relative grid grid-cols-2 gap-4">
-                <img src={maldivesImg} alt="Luxury beach villa in Maldives" loading="lazy" className="rounded-2xl shadow-glow object-cover h-56 w-full" width={400} height={500} />
-                <img src={santoriniImg} alt="Iconic blue domed church in Santorini, Greece" loading="lazy" className="rounded-2xl shadow-glow object-cover h-56 w-full mt-12" width={400} height={500} />
-                <img src={himalayaImg} alt="Snow-capped mountain peaks of the Himalayas" loading="lazy" className="rounded-2xl shadow-glow object-cover h-56 w-full -mt-8" width={400} height={500} />
-                <img src={tajImg} alt="The magnificent Taj Mahal in Agra, India" loading="lazy" className="rounded-2xl shadow-glow object-cover h-56 w-full mt-4" width={400} height={500} />
+                <img
+                  src={maldivesImg}
+                  alt="Luxury beach villa in Maldives"
+                  loading="lazy"
+                  className="rounded-2xl shadow-glow object-cover h-56 w-full"
+                  width={400}
+                  height={500}
+                />
+                <img
+                  src={santoriniImg}
+                  alt="Iconic blue domed church in Santorini, Greece"
+                  loading="lazy"
+                  className="rounded-2xl shadow-glow object-cover h-56 w-full mt-12"
+                  width={400}
+                  height={500}
+                />
+                <img
+                  src={himalayaImg}
+                  alt="Snow-capped mountain peaks of the Himalayas"
+                  loading="lazy"
+                  className="rounded-2xl shadow-glow object-cover h-56 w-full -mt-8"
+                  width={400}
+                  height={500}
+                />
+                <img
+                  src={tajImg}
+                  alt="The magnificent Taj Mahal in Agra, India"
+                  loading="lazy"
+                  className="rounded-2xl shadow-glow object-cover h-56 w-full mt-4"
+                  width={400}
+                  height={500}
+                />
               </div>
             </div>
           </div>
@@ -156,18 +200,25 @@ export function Index() {
       <CoreServices />
 
       {/* DESTINATIONS */}
-      <section id="destinations" className="py-12 sm:py-24 bg-gradient-soft relative overflow-hidden reveal">
+      <section
+        id="destinations"
+        className="py-12 sm:py-24 bg-gradient-soft relative overflow-hidden reveal"
+      >
         <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <p className="text-accent font-semibold tracking-widest text-xs uppercase mb-3">Popular places</p>
+              <p className="text-accent font-semibold tracking-widest text-xs uppercase mb-3">
+                Popular places
+              </p>
               <h2 className="font-display text-4xl sm:text-5xl text-foreground max-w-xl">
                 Featured <span className="text-gradient-brand">destinations</span>
               </h2>
             </div>
             <Button asChild variant="outline" size="lg">
-              <Link to="/destinations">View all <ArrowRight /></Link>
+              <Link to="/destinations">
+                View all <ArrowRight />
+              </Link>
             </Button>
           </div>
 
