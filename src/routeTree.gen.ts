@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PackagesOverviewRouteImport } from './routes/packages-overview'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesOverviewRoute = PackagesOverviewRouteImport.update({
+  id: '/packages-overview',
+  path: '/packages-overview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackagesRoute = PackagesRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/packages': typeof PackagesRoute
+  '/packages-overview': typeof PackagesOverviewRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/packages': typeof PackagesRoute
+  '/packages-overview': typeof PackagesOverviewRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
@@ -70,14 +78,15 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/packages': typeof PackagesRoute
+  '/packages-overview': typeof PackagesOverviewRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/services'
+  fullPaths: '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/packages-overview' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/services'
-  id: '__root__' | '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/services'
+  to: '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/packages-overview' | '/services'
+  id: '__root__' | '/' | '/about' | '/contact' | '/destinations' | '/packages' | '/packages-overview' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -86,6 +95,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DestinationsRoute: typeof DestinationsRoute
   PackagesRoute: typeof PackagesRoute
+  PackagesOverviewRoute: typeof PackagesOverviewRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -96,6 +106,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages-overview': {
+      id: '/packages-overview'
+      path: '/packages-overview'
+      fullPath: '/packages-overview'
+      preLoaderRoute: typeof PackagesOverviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/packages': {
@@ -142,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DestinationsRoute: DestinationsRoute,
   PackagesRoute: PackagesRoute,
+  PackagesOverviewRoute: PackagesOverviewRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport

@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "www.packlogue.com" }],
       "destination": "https://packlogue.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/packages-overview",
+      "destination": "/packages",
+      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
