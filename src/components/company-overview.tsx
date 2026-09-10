@@ -1,7 +1,7 @@
 import { Star, Award, Users, MapPin, Quote } from "lucide-react";
-import goaImg from "@/assets/dest-goa.jpg";
-import heroImg from "@/assets/hero-kerala.jpg";
-import munnarImg from "@/assets/dest-munnar.jpg";
+import goaImg from "@/assets/dest-goa.webp";
+import heroImg from "@/assets/hero-kerala.webp";
+import munnarImg from "@/assets/dest-munnar.webp";
 
 export function CompanyOverview() {
   return (

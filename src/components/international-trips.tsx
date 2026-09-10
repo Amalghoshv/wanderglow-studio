@@ -2,28 +2,28 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Plane, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import baliImg from "@/assets/bali_temple_1779475272545.png";
-import japanImg from "@/assets/japan_cherry_1779475287338.png";
-import singaporeImg from "@/assets/singapore_city_1779475303037.png";
-import thailandImg from "@/assets/thailand_beach_1779475320065.png";
-import dubaiImg from "@/assets/dubai_skyline_1779475337956.png";
-import greeceImg from "@/assets/europe_street_1779475354860.png";
-import maldivesImg from "@/assets/dest-maldives.jpg";
-import himalayasImg from "@/assets/dest-himalayas.jpg";
-import tajImg from "@/assets/dest-taj.jpg";
-import heroImg from "@/assets/hero-kerala.jpg";
+import baliImg from "@/assets/bali_temple_1779475272545.webp";
+import japanImg from "@/assets/japan_cherry_1779475287338.webp";
+import singaporeImg from "@/assets/singapore_city_1779475303037.webp";
+import thailandImg from "@/assets/thailand_beach_1779475320065.webp";
+import dubaiImg from "@/assets/dubai_skyline_1779475337956.webp";
+import greeceImg from "@/assets/europe_street_1779475354860.webp";
+import maldivesImg from "@/assets/dest-maldives.webp";
+import himalayasImg from "@/assets/dest-himalayas.webp";
+import tajImg from "@/assets/dest-taj.webp";
+import heroImg from "@/assets/hero-kerala.webp";
 
-import egyptImg from "@/assets/dest-egypt.png";
-import cambodiaImg from "@/assets/dest-cambodia.png";
-import vietnamImg from "@/assets/dest-vietnam.png";
-import malaysiaImg from "@/assets/dest-malaysia.png";
-import srilankaImg from "@/assets/dest-srilanka.png";
+import egyptImg from "@/assets/dest-egypt.webp";
+import cambodiaImg from "@/assets/dest-cambodia.webp";
+import vietnamImg from "@/assets/dest-vietnam.webp";
+import malaysiaImg from "@/assets/dest-malaysia.webp";
+import srilankaImg from "@/assets/dest-srilanka.webp";
 
-import laosImg from "@/assets/dest-laos.png";
-import uzbekistanImg from "@/assets/dest-uzbekistan.png";
-import armeniaImg from "@/assets/dest-armenia.png";
-import mauritiusImg from "@/assets/dest-mauritius.png";
-import georgiaImg from "@/assets/dest-georgia.png";
+import laosImg from "@/assets/dest-laos.webp";
+import uzbekistanImg from "@/assets/dest-uzbekistan.webp";
+import armeniaImg from "@/assets/dest-armenia.webp";
+import mauritiusImg from "@/assets/dest-mauritius.webp";
+import georgiaImg from "@/assets/dest-georgia.webp";
 
 const destinations = [
   { name: "Bali", region: "Southeast Asia", img: baliImg, featured: true },
